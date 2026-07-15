@@ -1,7 +1,6 @@
 class MinStack {
 stack<int> ss;
 stack<int> mi;
-int mini = INT_MAX;
 public:
     MinStack() {
         
@@ -9,8 +8,12 @@ public:
     
     void push(int value) {
         ss.push(value);
-        mini = min(mini, value);
-        mi.push(mini);
+        //mini = min(mini, value);
+        if(!mi.empty()){
+            mi.push(min(value, mi.top()));
+        }else{
+            mi.push(value);
+        }
     }
     
     void pop() {
