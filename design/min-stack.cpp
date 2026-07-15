@@ -1,5 +1,7 @@
 class MinStack {
 stack<int> ss;
+stack<int> mi;
+int mini = INT_MAX;
 public:
     MinStack() {
         
@@ -7,11 +9,14 @@ public:
     
     void push(int value) {
         ss.push(value);
+        mini = min(mini, value);
+        mi.push(mini);
     }
     
     void pop() {
         if(!ss.empty()){
             ss.pop();
+            mi.pop();
         }
     }
     
@@ -22,13 +27,8 @@ public:
     }
     
     int getMin() {
-        int mini = INT_MAX;
-        stack<int> dupl = ss;
-        while(!dupl.empty()){
-            mini = min(dupl.top(), mini);
-            dupl.pop();
-        }
-        return mini;
+        
+        return mi.top();
     }
 };
 
