@@ -35,6 +35,10 @@ public:
             curr = curr->next;
             goTill--;
         }
+        if(goTill == 0 && head->next != nullptr){
+            head = head->next;
+            return head;
+        }
         if(curr->next == nullptr){
             curr = nullptr;
             return head;
