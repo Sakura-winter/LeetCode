@@ -10,6 +10,7 @@
  */
 class Solution {
 public:
+    //Count the number of nodes
     int countNode(ListNode* head){
         ListNode* temp = head;
         int cnt = 0;
@@ -21,28 +22,28 @@ public:
         return cnt;
     }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //if single node, then delete that node and move point head to the nullptr.
+        //coz it's confirmed that they will delete a node
         if(head->next == nullptr){
             head = nullptr;
             return head;
         }
-        if(head == nullptr)return head;
 
         int cnt = countNode(head);
-        int goTill = cnt - n;
+        int goTill = cnt - n;//run the loop till here, example if n = 2 and cnt = 5, then 5 - 2 = 3, go till the 3rd element 
         ListNode * curr = head;
+        //stop before the element we want to delete, why goTill > 1, coz curr is at head means it's
+        //already 1 and goTill 3 -> 2, curr is 1 step ahead
         while(goTill > 1){
-            
             curr = curr->next;
             goTill--;
         }
+        //if goTill == 0, means we have to delete the head
         if(goTill == 0 && head->next != nullptr){
             head = head->next;
             return head;
         }
-        if(curr->next == nullptr){
-            curr = nullptr;
-            return head;
-        }
+        
         curr->next = curr->next->next;
         return head;
 
