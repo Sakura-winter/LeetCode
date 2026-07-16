@@ -17,15 +17,12 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-
-        ListNode* temp = slow;
         ListNode* prev = nullptr;
-        //ListNode* agla = t
-        while(temp){
-            ListNode* nextNode = temp->next;
-            temp->next = prev;
-            prev = temp;
-            temp = nextNode;
+        while(slow){
+            ListNode* nextNode = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = nextNode;
 
         }
         
