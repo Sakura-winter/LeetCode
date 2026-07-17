@@ -10,6 +10,8 @@
  */
 class Solution {
 public:
+
+    /*
     //Count the number of nodes
     int countNode(ListNode* head){
         ListNode* temp = head;
@@ -46,6 +48,24 @@ public:
         
         curr->next = curr->next->next;
         return head;
+        */
+        ListNode* removeNthFromEnd(ListNode* head, int n){
+            
+            ListNode* slow = head;
+            ListNode* fast = head;
+            while(n--){
+                fast = fast->next;
+                
+            }
+            if(fast == nullptr){
+                return head->next;
+            }
+            while(fast && fast->next){
+                fast = fast->next;
+                slow = slow->next;
+            }
+            slow->next = slow->next->next;
+            return head;
+        }
 
-    }
 };
