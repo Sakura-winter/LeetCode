@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int height(TreeNode* root){
+    /*int height(TreeNode* root){
         if(root == nullptr) return 0;
 
         return 1 + max(height(root->left), height(root->right));
@@ -27,5 +27,26 @@ public:
 
         return isBalanced(root->left) && isBalanced(root->right);
         
+    }*/
+    int dfs(TreeNode* root){
+        if(root == nullptr){
+            return 0;
+        }
+
+        //check left subtree
+        int left = dfs(root->left);
+        if(left == -1) return -1;
+
+        //check right subtree
+        int right = dfs(root->right);
+        if(right == -1) return -1;
+
+        //now we have height of both left and right
+        if(abs(right - left) > 1) return -1;
+
+        return 1 + max(left, right);
+    }
+    bool isBalanced(TreeNode* root) {
+        return dfs(root) != -1;
     }
 };
